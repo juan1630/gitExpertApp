@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import {AddCategory} from './components/AddCategory';
+import {GifGrid} from './components/gifGrid';
 
 const GitExpertApp = () => {
 
   // const categories = ;
-  const [  categories , setCategories] = useState(['One punch', 'Samuria x', 'Drgaon ball', 'Attack on titan']);
+  const [  categories , setCategories] = useState(['Attack on titan']);
   // const handelAdd = () => {
   //     // console.log("Add");
-  //     setCategories([ 'One Piece', ...categories]);
+
   //     // asi se agrega un elemento al arreglo
   // }
     return (
       <>
       <h2> GitApp </h2>
-    <AddCategory/>
-    {/* <button onClick={ handelAdd}  > Agregar </button> */}
 
+    <AddCategory setCategories={ setCategories } />
+    {/* <button onClick={ handelAdd}  > Agregar </button> */}
+      {/*  pasamos la fiuncion por parametro*/}
     <h1>
         {
-          categories.map( (category) => {
-            return <li  key={  category} > {category} </li>
-          })
+          categories.map( (category) => <GifGrid key={category} category={category} />  )
         }
       </h1>
       <hr/>

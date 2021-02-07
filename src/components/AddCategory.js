@@ -1,22 +1,34 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 
+export const AddCategory = ({setCategories}) => {
 
-export const AddCategory = () => {
-
-  const [inputValue, setInputValue] =useState('Hola mundo');
+// se debe de dejar elstrig vacio
+  const [inputValue, setInputValue] =useState('');
+  
   const handleValue = (e) => {
 
       setInputValue( e.target.value );
   }
 
   const handleSubmit = (e) => {
-    console.log(e );
+    // console.log(e );
     e.preventDefault();
+
+    if( inputValue.trim().length > 2 ){
+            // se previene que se recargue la pagina
+      setCategories( cats => [...cats,inputValue] );
+      // recibimso por defecto los valores de la catgoria
+      setInputValue('');
+      }
+
 
   }
 
   return(
+
+    // el fargment se quita si hay otro agrupador
     <form   onSubmit={ handleSubmit }  >
 
       <input type="text"
@@ -27,3 +39,9 @@ export const AddCategory = () => {
       </form>
   )
 };
+
+AddCategory.propTypes = {
+  setCategories: PropTypes.func.isRequired
+}
+
+
