@@ -6,7 +6,7 @@ export const AddCategory = ({setCategories}) => {
 
 // se debe de dejar elstrig vacio
   const [inputValue, setInputValue] =useState('');
-  
+
   const handleValue = (e) => {
 
       setInputValue( e.target.value );
@@ -18,7 +18,7 @@ export const AddCategory = ({setCategories}) => {
 
     if( inputValue.trim().length > 2 ){
             // se previene que se recargue la pagina
-      setCategories( cats => [...cats,inputValue] );
+      setCategories( cats => [inputValue, ...cats] );
       // recibimso por defecto los valores de la catgoria
       setInputValue('');
       }
@@ -43,5 +43,3 @@ export const AddCategory = ({setCategories}) => {
 AddCategory.propTypes = {
   setCategories: PropTypes.func.isRequired
 }
-
-

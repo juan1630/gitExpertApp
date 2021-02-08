@@ -1,40 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { GifGridItem } from './GifGridItem';
-
+import React from 'react';
+import { useFetchGif } from '../hooks/useFetchGif';
+import {GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({ category }) => {
 
-        const [images, setImages] = useState([]);
 
-        // solo se ejecuta una vez la funcinm como el onInit
-        useEffect(() => {
-            getsGifs();
-        }, []);
+      const { data: images, loading }  =  useFetchGif( category );
+      // console.log( data );
+      // console.log( loading );
 
-        const getsGifs = async() => {
-            const url = 'https://api.giphy.com/v1/gifs/search?q=attack+on+titan&limit=10&api_key=eEPDA03j1IvzhS3hAAbeGHhOeE48k0vN';
-            const resp = await fetch(url);
-            const { data } = await resp.json();
+      { loading && <p>loading </p> }
 
-// es el return de la promesa
-            const gifs = data.map(img => {
-                return {
-                    id: img.id,
-                    title: img.title,
-                    url: img.images?.downsized_medium.url
-                }
-            });
+        return (
+          <div className="" >
+            <h3> { category } </h3>
+                <div className="card-grid" >
+                  {
+                    images.map( (img) =>(
 
-            // console.log( gifs );
-            setImages(gifs);
-
-        }
-        return ( <div >
-                <h3> { category } </h3>
-
-                {
-                    images.map( img => (<GifGridItem key={ img.id }  { ...img } />))
-                    }
-                        </div>
+                      <GifGridItem key={img.id} {...img} />
                     )
-                }
+                    )
+                  }
+                </div>
+            </div>)
+        }
+
+        // { loading ? 'Cargando...' : 'Fin de la carga' }
