@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el componete <GifGridItem/> Debe de mostrar el componete 1`] = `
+<div
+  className="card animate__animated animate__bounce animate__delay-5s"
+>
+  <img />
+  <p>
+     
+     
+  </p>
+</div>
+`;
