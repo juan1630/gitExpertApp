@@ -4,9 +4,13 @@ exports[`Pruebas en el componete <GifGridItem/> Debe de mostrar el componete 1`]
 <div
   className="card animate__animated animate__bounce animate__delay-5s"
 >
-  <img />
+  <img
+    alt="Un titulo"
+    src="http://localhost/algo.jpg"
+  />
   <p>
      
+    Un titulo
      
   </p>
 </div>

@@ -15,6 +15,7 @@ export const AddCategory = ({setCategories}) => {
   const handleSubmit = (e) => {
     // console.log(e );
     e.preventDefault();
+    console.log('Se disparo el handleSubmit', inputValue)
 
     if( inputValue.trim().length > 2 ){
             // se previene que se recargue la pagina
@@ -30,7 +31,7 @@ export const AddCategory = ({setCategories}) => {
 
     // el fargment se quita si hay otro agrupador
     <form   onSubmit={ handleSubmit }  >
-
+      <p> { inputValue } </p>
       <input type="text"
       className="input"
       value={inputValue}
