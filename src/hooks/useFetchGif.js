@@ -2,6 +2,7 @@
 // los hooks son funciones
 //
 
+
 import  {getsGifs}  from '../helpers/getGifs'
 import { useState, useEffect } from 'react';
 
@@ -18,7 +19,6 @@ export const useFetchGif = ( category ) => {
         getsGifs(category)
         .then(  imgs => {
 
-          console.log(imgs);
 
           setState({
               data: imgs,

@@ -41,4 +41,20 @@ describe('Pruebas en el componente AddCategory',  ()=> {
         expect( setCategories ).not.toHaveBeenCalled();
 
     });
+
+    test('Debe de llamar el setCategories y limpiar la caja de texto', () => {
+
+          let value = "zelda";
+
+// simulamos el change
+          wrapper.find('input').simulate('change', { target: {  value }  });
+          // Simulaos el submit del form
+          wrapper.find('form').simulate('submit', { preventDefault(){} });
+          // verificamos que se haya llamado la funcion
+            expect(setCategories).toHaveBeenCalled();
+          //verificamos el valor del input
+          expect( wrapper.find('input').prop('value') ).toBe('');
+
+
+    });
 });
