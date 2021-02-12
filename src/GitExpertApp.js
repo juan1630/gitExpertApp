@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import {AddCategory} from './components/AddCategory';
 import {GifGrid} from './components/gifGrid';
 
-const GitExpertApp = () => {
+const GitExpertApp = (  { defaultCategories } ) => {
 
   // const categories = ;
-  const [  categories , setCategories] = useState(['Attack on titan']);
+  const [  categories , setCategories] = useState( defaultCategories);
   // const handelAdd = () => {
   //     // console.log("Add");
 
@@ -27,6 +27,8 @@ const GitExpertApp = () => {
       </>
   );
 }
+
+
 
 
 

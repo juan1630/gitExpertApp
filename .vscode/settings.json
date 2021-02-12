@@ -1,0 +1,7 @@
+{
+    "editor.fontFamily": "'JetBrains Mono', Medium",
+    "editor.lineNumbers": "off",
+    "editor.matchBrackets": "never",
+    "editor.trimAutoWhitespace": false,
+    "editor.wrappingIndent": "none"
+}

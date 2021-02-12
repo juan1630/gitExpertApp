@@ -1,49 +1,36 @@
-import { GifGrid } from '../../components/gifGrid';
-import { shallow} from 'enzyme';
-import React from 'react';
-
 import { useFetchGif } from '../../hooks/useFetchGif';
-jest.mock('../../hooks/useFetchGif')
+import { renderHook } from '@testing-library/react-hooks'
 
-
-describe('Pruebas del useFetchGif', () => {
-
-
-  let wrapper;
-  const category = "Zelda";
-
-  test('Debe de hacer match con el snapshot', () => {
-
-    // retorna la infomacio del componente
-      useFetchGif.mockReturnValue({
-        data:[],
-        loading:true
-      });
-
-      wrapper = shallow(<GifGrid  category={category} /> );
-        expect( wrapper ).toMatchSnapshot();
-  });
-
-  test('Debe de mostart items cuando se carguen las imagenes', () => {
-        // mock fingue que se trajo la data del servicio
-
-
-        const gifs = [{
-          id:'ABC',
-          url:'https://localhost:3200/images/photo.jpg',
-          title:'algo jeje'
-        }]
-
-        useFetchGif.mockReturnValue({
-          data:gifs,
-          loading:false
-        });
+describe('Pruebas en el hook useFetch', () => {
 
 
 
-        wrapper = shallow(<GifGrid  category={category} /> );
+    test('Debe de mostrar el estado de la aplicación', async() => {
+
+        const { result, waitForNextUpdate } = renderHook(() => useFetchGif('attack on titan'));
+        // console.log(result);
+        const { data, loading } = result.current;
+
+        await waitForNextUpdate();
+
+        expect(data).toEqual([]);
+        expect(loading).toBe(true);
+
+    });
 
 
-        expect( wrapper ).toMatchSnapshot();
-  });
+    test('Debe de retornar el arreglo de img y el loading en false', async() => {
+
+
+        const { result, waitForNextUpdate } = renderHook(() => useFetchGif('attack on titan'));
+
+        const { data, loading } = result.current;
+        // console.log(data);
+        await waitForNextUpdate();
+
+        expect(data.length).toBe(10);
+        expect(loading).toBe(false);
+
+    });
+
 });
